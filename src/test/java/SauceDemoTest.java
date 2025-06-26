@@ -41,5 +41,6 @@ public class SauceDemoTest {
         String actual_name = driver.findElement(By.xpath("//div[@data-test='inventory-item-name']")).getText();
         softAssert.assertEquals(actual_name, "Sauce Labs Backpack");
         softAssert.assertEquals(actual_sum, "$29.99");
+        softAssert.assertAll();
     }
 }
