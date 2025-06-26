@@ -2,18 +2,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
 import java.time.Duration;
 import java.util.HashMap;
 
 public class SauceDemoTest {
     WebDriver driver;
-    @Test
+    SoftAssert softAssert;
 
     @BeforeMethod
     public void setup(){
+        softAssert = new SoftAssert();
         ChromeOptions options = new ChromeOptions();
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("credentials_enable_service", false);
@@ -37,15 +39,7 @@ public class SauceDemoTest {
         driver.findElement(By.xpath("//a[@data-test='shopping-cart-link']")).click();
         String actual_sum = driver.findElement(By.xpath("//div[@data-test='inventory-item-price']")).getText();
         String actual_name = driver.findElement(By.xpath("//div[@data-test='inventory-item-name']")).getText();
-        Assert.assertEquals(actual_name, "Sauce Labs Backpack");
-        Assert.assertEquals(actual_sum, "$29.99");
-
-
-
-
-
-
-
-
+        softAssert.assertEquals(actual_name, "Sauce Labs Backpack");
+        softAssert.assertEquals(actual_sum, "$29.99");
     }
 }

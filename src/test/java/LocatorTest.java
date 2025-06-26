@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 public class LocatorTest {
     WebDriver driver;
-    @Test
 
     @BeforeMethod
     public void setup(){
@@ -60,5 +59,4 @@ public class LocatorTest {
         driver.findElement(By.cssSelector("[class$=_logo]"));
         driver.findElement(By.cssSelector("[class*=burger]"));
     }
-
 }
