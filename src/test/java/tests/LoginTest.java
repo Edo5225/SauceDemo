@@ -1,4 +1,5 @@
 package tests;
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -6,6 +7,12 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseTest{
 
     @Test(priority = 1, description = "Проверка входа без пароля", invocationCount = 1, testName = "Негативный тест логина без пароля")
+    @Severity(SeverityLevel.NORMAL)
+    @Owner("Andreev D.S.")
+    @Epic("Login Page")
+    @Feature("Login")
+    @Story("LoginWithoutPassword")
+    @Description("Проверка что пользователь не может войти в аккаунт без использования пароля")
     public void checkLoginWithoutPassword(){
         loginPage.open();
         loginPage.login("standart_user", "");
