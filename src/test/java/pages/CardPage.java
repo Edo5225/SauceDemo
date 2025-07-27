@@ -1,4 +1,5 @@
 package pages;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,15 +50,15 @@ public class CardPage extends BasePage{
     public List<WebElement> getItemCost () {
         return driver.findElements(ITEM_PRICE);
     }
-
+    @Step("Удаляем из корзины товар Bike")
     public void removeItemBike () {
         driver.findElement(BIKE_REMOVE_BUTTON).click();
     }
-
+    @Step("Переход из корзины на страницу товаров")
     public void continueShopping () {
         driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
     }
-
+    @Step("Переход из корзины на страницу Checkout")
     public void moveToCheckout () {
         driver.findElement(CHECKOUT_BUTTON).click();
     }
