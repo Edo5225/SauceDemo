@@ -28,8 +28,11 @@ public class BaseTest {
 
 @Parameters({"browser"})
     @BeforeMethod
-    public void setup(@Optional("chrome") String browser, ITestContext ITestContext) {
-    if(browser.equalsIgnoreCase("chrome")){
+public void setup(@Optional("chrome") String browser, ITestContext context) {
+    WebDriver driver;
+    FirefoxOptions firefoxOptions = null;
+
+    if (browser.equalsIgnoreCase("chrome")) {
         ChromeOptions options = new ChromeOptions();
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("credentials_enable_service", false);
@@ -42,21 +45,25 @@ public class BaseTest {
         options.addArguments("start-maximized");
         options.addArguments("--incognito");
         options.addArguments("--headless");
-        FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.addArguments("--headless");
+
         driver = new ChromeDriver(options);
+    } else if (browser.equalsIgnoreCase("firefox")) {
+        firefoxOptions = new FirefoxOptions();
+        firefoxOptions.addArguments("--headless");
+
+        driver = new FirefoxDriver(firefoxOptions);
+    } else {
+        throw new IllegalArgumentException("Unsupported browser: " + browser);
     }
-        else if(browser.equalsIgnoreCase("firefox")) {
-        driver = new FirefoxDriver();
-    }
-        ITestContext.setAttribute("driver", driver);
-        softAssert = new SoftAssert();
-        driver.manage().timeouts() .implicitlyWait(Duration.ofSeconds(20));
-        loginPage = new LoginPage(driver);
-        productsPage = new ProductsPage(driver);
-        cardPage = new CardPage(driver);
-        checkoutPage = new CheckoutPage(driver);
-    }
+
+    context.setAttribute("driver", driver);
+    softAssert = new SoftAssert();
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+    loginPage = new LoginPage(driver);
+    productsPage = new ProductsPage(driver);
+    cardPage = new CardPage(driver);
+    checkoutPage = new CheckoutPage(driver);
+}
 
     @AfterMethod(alwaysRun = true, description = "Закрытие")
     public void tearDown(ITestResult result){
