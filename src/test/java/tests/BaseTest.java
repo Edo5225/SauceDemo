@@ -26,6 +26,9 @@ public class BaseTest {
     CardPage cardPage;
     CheckoutPage checkoutPage;
 
+    String user = System.getProperty("user");
+    String password = System.getProperty("password");
+
 @Parameters({"browser"})
     @BeforeMethod
 public void setup(@Optional("chrome") String browser, ITestContext context) {

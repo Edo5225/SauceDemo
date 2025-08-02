@@ -23,7 +23,7 @@ public class CartTest extends BaseTest{
     @Test(testName = "Проверка количества товаров в корзине")
     public void checkSumItem () {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.addToCartBike();
         productsPage.addToCartBackpack();
         productsPage.openCart();
@@ -35,7 +35,7 @@ public class CartTest extends BaseTest{
     @Test (testName = "Проверка стоимости товаров")
     public void checkItemCost() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.addToCartBike();
         productsPage.addToCartBackpack();
         productsPage.openCart();
@@ -47,7 +47,7 @@ public class CartTest extends BaseTest{
     @Test (testName = "Проверка возможности удаления продуктов из корзины")
     public void checkRemoveItem () {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.addToCartBike();
         productsPage.addToCartTSHIRT();
         productsPage.addToCartBackpack();
@@ -61,7 +61,7 @@ public class CartTest extends BaseTest{
     @Test(testName = "Переход из корзины на страницу товаров")
     public void checkContinueShopping () {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.addToCartBike();
         productsPage.openCart();
         cardPage.checkTitle();
@@ -73,7 +73,7 @@ public class CartTest extends BaseTest{
     @Test(testName = "Проверка перехода на страницу Checkout")
     public void checkCheckout () {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.addToCartBike();
         productsPage.openCart();
         cardPage.checkTitle();

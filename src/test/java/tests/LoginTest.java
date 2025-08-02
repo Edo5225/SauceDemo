@@ -15,14 +15,14 @@ public class LoginTest extends BaseTest{
     @Description("Проверка что пользователь не может войти в аккаунт без использования пароля")
     public void checkLoginWithoutPassword(){
         loginPage.open();
-        loginPage.login("standart_user", "");
+        loginPage.login(user, "");
         softAssert.assertEquals(loginPage.getErrorMessage(), "Epic sadface: Password is required", "Сообщение не соответствует");
         softAssert.assertAll();
     }
     @Test(testName = "Тест авторизации без логина")
     public void checkLoginWithoutUserName(){
         loginPage.open();
-        loginPage.login("", "secret_sauce");
+        loginPage.login("", password);
         softAssert.assertEquals(loginPage.getErrorMessage(), "Epic sadface: Username is required", "Сообщение не соответствует");
         softAssert.assertAll();
 
@@ -38,15 +38,15 @@ public class LoginTest extends BaseTest{
     @Test(testName = "Авторизация с валидными данными")
     public void checkLogin() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         softAssert.assertTrue(productsPage.isPageOpened());
         softAssert.assertAll();
     }
     @DataProvider (name = "LoginData")
     public  Object[][] loginData() {
         return new Object[][]{
-                {"standart_user","","Epic sadface: Password is required"},
-                {"","secret_sauce","Epic sadface: Username is required"},
+                {user,"","Epic sadface: Password is required"},
+                {"",password,"Epic sadface: Username is required"},
                 {"test","test","Epic sadface: Username and password do not match any user in this service"}
         };
     }
