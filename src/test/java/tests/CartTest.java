@@ -28,7 +28,7 @@ public class CartTest extends BaseTest{
         productsPage.addToCartBackpack();
         productsPage.openCart();
         cardPage.checkTitle();
-        softAssert.assertEquals(cardPage.sumItem(), 4, "Количество товаров не соответствует");
+        softAssert.assertEquals(cardPage.sumItem(), 2, "Количество товаров не соответствует");
         softAssert.assertAll();
     }
 

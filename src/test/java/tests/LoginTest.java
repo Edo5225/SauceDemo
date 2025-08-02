@@ -39,7 +39,7 @@ public class LoginTest extends BaseTest{
     public void checkLogin() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        softAssert.assertFalse(productsPage.isPageOpened());
+        softAssert.assertTrue(productsPage.isPageOpened());
         softAssert.assertAll();
     }
     @DataProvider (name = "LoginData")
