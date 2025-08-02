@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -40,6 +41,9 @@ public class BaseTest {
         options.addArguments("--disable-features=PasswordLeakDetection");
         options.addArguments("start-maximized");
         options.addArguments("--incognito");
+        options.addArguments("--headless");
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.addArguments("--headless");
         driver = new ChromeDriver(options);
     }
         else if(browser.equalsIgnoreCase("firefox")) {
@@ -59,6 +63,8 @@ public class BaseTest {
     if (ITestResult.FAILURE == result.getStatus()){
         takeScreenshot(driver);
         }
-    driver.quit();
+    if (driver != null){
+        driver.quit();
+    }
     }
 }
