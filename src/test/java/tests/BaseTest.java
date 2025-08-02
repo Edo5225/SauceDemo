@@ -74,6 +74,6 @@ public void setup(@Optional("chrome") String browser, ITestContext context) {
         }
     if (driver != null){
         driver.quit();
-    }
+     }
     }
 }
