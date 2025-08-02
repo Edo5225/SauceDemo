@@ -25,7 +25,6 @@ public class BaseTest {
     LoginPage loginPage;
     CardPage cardPage;
     CheckoutPage checkoutPage;
-
     String user = System.getProperty("user", PropertyReader.getProperty("user"));
     String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
